@@ -115,10 +115,15 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		HAL_GPIO_TogglePin(PA5_GPIO_Port, PA5_Pin);
-		ADC_value = HAL_ADC_GetValue(&hadc1);
-		HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\n", ADC_value), 1000);
-		HAL_Delay(500);
+//		HAL_GPIO_TogglePin(PA5_GPIO_Port, PA5_Pin);
+//		ADC_value = HAL_ADC_GetValue(&hadc1);
+//		HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\n", ADC_value), 1000);
+//		HAL_Delay(500);
+		  if(buffer_flag == 1){
+			  //command_parser_fsm();
+			  buffer_flag = 0;
+		  }
+		  //uart_communication_fsm();
 	}
 	/* USER CODE END 3 */
 }
