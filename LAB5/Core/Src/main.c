@@ -104,12 +104,11 @@ int main(void) {
 	MX_USART2_UART_Init();
 	/* USER CODE BEGIN 2 */
 	HAL_UART_Receive_IT(&huart2, &temp, 1);
+	HAL_ADC_Start(&hadc1);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	uint32_t ADC_value = 0;
-	uint8_t str[30];
 
 	while (1) {
 		/* USER CODE END WHILE */
@@ -120,9 +119,10 @@ int main(void) {
 //		HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\n", ADC_value), 1000);
 //		HAL_Delay(500);
 		  if(buffer_flag == 1){
-			  //command_parser_fsm();
+			  command_parser_fsm();
 			  buffer_flag = 0;
 		  }
+		  uart_communication_fsm();
 		  //uart_communication_fsm();
 	}
 	/* USER CODE END 3 */

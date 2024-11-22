@@ -11,6 +11,11 @@
 #include "main.h"
 
 #define MAX_BUFFER_SIZE	30
+
+#define INIT_COMMAND_PARSER	0
+#define START				1
+#define END					2
+
 extern uint8_t temp;
 extern uint8_t buffer[];
 extern uint8_t index_buffer;

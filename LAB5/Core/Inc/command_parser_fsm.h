@@ -10,9 +10,7 @@
 
 #include "main.h"
 
-#define INIT_COMMAND_PARSER	0
-#define START				1
-#define END					2
+
 extern uint8_t command_parser_status;
 
 void command_parser_fsm();
