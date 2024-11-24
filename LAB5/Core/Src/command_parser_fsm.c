@@ -14,13 +14,16 @@ uint8_t command_parser_status = INIT_COMMAND_PARSER;
 void command_parser_fsm(){
 	switch(command_parser_status){
 	case INIT_COMMAND_PARSER:
-		if(temp == '!') command_parser_status = START;
+		if(temp == '!') {
+			command_parser_status = START;
+			command_index = 0;
+		}
 		break;
 	case START:
 		if(temp == '#') command_parser_status = END;
 		if(temp == '!'){
 			command_parser_status = START;
-			command_data[0] = '\0';
+			command_index = 0;
 		}
 		else{
 			command_data[command_index++] = temp;
@@ -28,6 +31,7 @@ void command_parser_fsm(){
 		break;
 	case END:
 		command_flag = 1;
+		command_data[command_index] = '\0';
 		command_parser_status = INIT_COMMAND_PARSER;
 		break;
 	default:

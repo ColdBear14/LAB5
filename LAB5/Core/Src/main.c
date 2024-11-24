@@ -65,6 +65,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	if (huart->Instance == USART2) {
 		//HAL_UART_Transmit(&huart2, &temp, 1, 50);
 		buffer[index_buffer++] = temp;
+		HAL_GPIO_TogglePin(PA5_GPIO_Port, PA5_Pin);
 		if (index_buffer == MAX_BUFFER_SIZE)
 			index_buffer = 0;
 		buffer_flag = 1;
@@ -109,7 +110,7 @@ int main(void) {
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
+	uint32_t ADC_value = 0;
 	while (1) {
 		/* USER CODE END WHILE */
 
@@ -123,7 +124,7 @@ int main(void) {
 			  buffer_flag = 0;
 		  }
 		  uart_communication_fsm();
-		  //uart_communication_fsm();
+
 	}
 	/* USER CODE END 3 */
 }
