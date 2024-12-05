@@ -32,7 +32,8 @@ void command_parser_fsm(){
 	case END:
 		command_flag = 1;
 		command_data[command_index] = '\0';
-		command_parser_status = INIT_COMMAND_PARSER;
+		command_parser_status = START;
+		command_index = 0;
 		break;
 	default:
 		break;

@@ -27,13 +27,22 @@ void uart_communication_fsm(){
 		}
 		break;
 	case SENDING:
-		HAL_UART_Transmit(&huart2, (void *)str,  sprintf(str, "!ADC=%ld#\r\n", ADC_value), 1000);
+		HAL_UART_Transmit(&huart2, (void *)str,  sprintf(str, "ADC_VALUE: %ld \r\n", ADC_value), 1000);
 		uart_com_status = WAIT_FOR_OK;
+		setTimer(0, 3000);
 		break;
 	case WAIT_FOR_OK:
 		if(command_flag == 1 && command_data[0] == 'O' && command_data[1] == 'K'){
 			uart_com_status = WAIT_FOR_RTS;
 			command_flag = 0;
+		}
+		else {
+			if(timer_flag[0] == 1){
+				uart_com_status = SENDING;
+				setTimer(0, 3000);
+
+			}
+
 		}
 		break;
 	}

@@ -29,13 +29,14 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-#include "global.h"
-#include "command_parser_fsm.h"
-#include "uart_communication_fsm.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
+#include "global.h"
+#include "software_timer.h"
+#include "uart_communication_fsm.h"
+#include "command_parser_fsm.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
